@@ -274,28 +274,32 @@ export function App() {
       </main>
 
       {/* Station Control & Notes Modal */}
-      <StationDetailModal
-        dateStr={selectedStationDate}
-        onClose={() => setSelectedStationDate(null)}
-        habits={habits}
-        records={records}
-        theme={currentTheme}
-        onToggleHabit={handleToggleHabit}
-        onSaveDayNote={handleSaveDayNote}
-        onNavigateDate={setSelectedStationDate}
-      />
+      {selectedStationDate && (
+        <StationDetailModal
+          dateStr={selectedStationDate}
+          onClose={() => setSelectedStationDate(null)}
+          habits={habits}
+          records={records}
+          theme={currentTheme}
+          onToggleHabit={handleToggleHabit}
+          onSaveDayNote={handleSaveDayNote}
+          onNavigateDate={setSelectedStationDate}
+        />
+      )}
 
       {/* Create / Edit Habit Line Modal */}
-      <HabitModal
-        isOpen={isHabitModalOpen}
-        onClose={() => {
-          setIsHabitModalOpen(false);
-          setEditingHabit(null);
-        }}
-        onSaveHabit={handleSaveHabit}
-        editingHabit={editingHabit}
-        theme={currentTheme}
-      />
+      {isHabitModalOpen && (
+        <HabitModal
+          isOpen={isHabitModalOpen}
+          onClose={() => {
+            setIsHabitModalOpen(false);
+            setEditingHabit(null);
+          }}
+          onSaveHabit={handleSaveHabit}
+          editingHabit={editingHabit}
+          theme={currentTheme}
+        />
+      )}
 
       {/* System Archive & Export Modal */}
       <ExportModal
